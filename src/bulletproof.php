@@ -141,12 +141,12 @@ class Image implements \ArrayAccess
      * @return string|boolean
      */
     public function offsetGet($offset)
-    {   
+    {
         /* return error if requested */
         if ($offset == 'error') {
             return $this->error;
         }
-        
+
         /* return false if $image['key'] isn't found */
         if (!isset($this->_files[$offset])) {
             return false;
@@ -316,16 +316,17 @@ class Image implements \ArrayAccess
         $image->height = $image->getHeight();
         $image->location = $image->getLocation();
 
-        /* get image sizes */
-        list($minSize, $maxSize) = $image->size;
-
-        /* check image size based on the settings */
-        if ($files['size'] < $minSize || $files['size'] > $maxSize) {
-            $min = intval($minSize / 1000) ?: 1;
-            $max = intval($maxSize / 1000) ?: 1;
-            $image->error = 'Image size should be at least ' . $min . ' KB, and no more than ' . $max . ' KB';
-            return null;
-        }
+        // Not works
+        // /* get image sizes */
+        // list($minSize, $maxSize) = $image->size;
+        //
+        // /* check image size based on the settings */
+        // if ($files['size'] < $minSize || $files['size'] > $maxSize) {
+        //     $min = intval($minSize / 1000) ?: 1;
+        //     $max = intval($maxSize / 1000) ?: 1;
+        //     $image->error = 'Image size should be at least ' . $min . ' KB, and no more than ' . $max . ' KB';
+        //     return null;
+        // }
 
         /* check image dimension */
         list($allowedWidth, $allowedHeight) = $image->dimensions;
